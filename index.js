@@ -6,18 +6,21 @@ let meta = {
 
 }
 
+let mensagem = "Bem vindo ao app de metas";
 let metas = [meta]
 
 const cadastrarMeta = async() => {
     const meta = await input({message:"Digite a meta:"})
 
     if(meta.length == 0) {
-        console.log('A meta não pode ser vazia')
+        mensagem = 'A meta não pode ser vazia'
     }
 
     metas.push(
         {value: meta, checked: false}
     )
+
+    mensagem = "Metas cadastradas com sucesso"
 }
 
 const listarMetas = async() => {
@@ -32,7 +35,7 @@ const listarMetas = async() => {
     })
 
     if(respostas.length == 0) {
-        console.log("nenhuma meta seleciona")
+        mensagem = "nenhuma meta seleciona"
         return
     }
 
@@ -70,7 +73,7 @@ const metasAbertas = async() => {
     })
 
     if(abertas.length == 0) {
-        console.log("Não existe metas abertas! :")
+        mensagem = "Não existe metas abertas! :"
         return
     }
 
@@ -92,7 +95,7 @@ const deletarMetas = async() => {
     })
 
     if(itemADeletar.length == 0) {
-        console.log("Nenhum item para deletar")
+        mensagem = "Nenhum item para deletar"
         return
     }
 
@@ -102,13 +105,24 @@ const deletarMetas = async() => {
         })
     })
 
-    console.log('Metas(s) deleta(s) com sucesso!')
+     mensagem = 'Metas(s) deleta(s) com sucesso!'
     
+}
+
+const mostrarMensagem = () => {
+    console.clear();
+
+    if(mensagem != "") {
+        console.log(mensagem)
+        console.log("")
+        mensagem = ""
+    }
 }
 
 const start = async () => {
     while(true) {
         
+        mostrarMensagem()
         const opcao = await select({
             message: "Menu >",
             choices:[
