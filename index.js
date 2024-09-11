@@ -143,7 +143,7 @@ const start = async () => {
                     value: 'cadastrar'
                 },
                 {
-                    name:'Listar metas',
+                    name:'listar metas',
                     value:'listar'
                 },
                 {
@@ -169,7 +169,7 @@ const start = async () => {
             case "cadastrar":
                 await cadastrarMeta()
                 break
-            case "Listar":
+            case "listar":
                 await listarMetas()
                 break
             case "realizadas":
